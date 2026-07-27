@@ -1,0 +1,24 @@
+import { mkdir, writeFile } from "node:fs/promises";
+
+const html = `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Interactive 24-slide presentation about solar energy in Vietnam."
+    />
+    <meta name="theme-color" content="#061426" />
+    <title>Solar Panel - Solar Energy in Vietnam</title>
+    <link rel="stylesheet" href="./assets/app.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>
+`;
+
+await mkdir("dist", { recursive: true });
+await writeFile("dist/index.html", html, "utf8");
