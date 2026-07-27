@@ -122,7 +122,7 @@ export function BackgroundMedia({ imageSrc, videoSrc, isActive }: BackgroundMedi
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster={resolvedImageSrc}
           draggable={false}
           onCanPlay={handleCanPlay}

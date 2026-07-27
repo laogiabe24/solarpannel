@@ -186,9 +186,18 @@ export function Presentation() {
     );
 
     neighbors.forEach((index) => {
+      const imgPath = resolveAssetPath(slides[index].backgroundImage);
       const image = new Image();
       image.decoding = "async";
-      image.src = resolveAssetPath(slides[index].backgroundImage);
+      image.src = imgPath;
+
+      const videoSrc = slides[index].backgroundVideo;
+      if (videoSrc) {
+        const videoPath = resolveAssetPath(videoSrc);
+        const video = document.createElement("video");
+        video.preload = "auto";
+        video.src = videoPath;
+      }
     });
   }, [current]);
 
