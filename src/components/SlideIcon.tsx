@@ -1,3 +1,5 @@
+import { resolveAssetPath } from "../utils/assets";
+
 interface SlideIconProps {
   src: string;
   x: number;
@@ -11,7 +13,7 @@ export function SlideIcon({ src, x, y, width, height }: SlideIconProps) {
     <img
       className="slide-icon"
       data-animate="item-icon"
-      src={src}
+      src={resolveAssetPath(src)}
       alt=""
       decoding="async"
       draggable={false}

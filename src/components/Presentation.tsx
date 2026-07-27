@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DESIGN_HEIGHT, DESIGN_WIDTH } from "../data/slideLayout";
 import { slides } from "../data/slides";
 import { animationConfig } from "../data/videos";
+import { resolveAssetPath } from "../utils/assets";
 import { Slide } from "./Slide";
 
 function parseHash() {
@@ -187,14 +188,14 @@ export function Presentation() {
     neighbors.forEach((index) => {
       const image = new Image();
       image.decoding = "async";
-      image.src = slides[index].backgroundImage;
+      image.src = resolveAssetPath(slides[index].backgroundImage);
     });
   }, [current]);
 
   return (
     <main className="presentation">
       <div className="ambient-bg" aria-hidden="true">
-        <img src={currentSlide.backgroundImage} alt="" />
+        <img src={resolveAssetPath(currentSlide.backgroundImage)} alt="" />
       </div>
       <div
         className="stage-shell"

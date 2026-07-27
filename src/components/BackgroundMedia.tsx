@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { resolveAssetPath } from "../utils/assets";
 
 interface BackgroundMediaProps {
   imageSrc: string;
@@ -6,22 +7,10 @@ interface BackgroundMediaProps {
   isActive: boolean;
 }
 
-function resolveVideoSrc(src?: string) {
-  if (!src) {
-    return undefined;
-  }
-
-  const isAbsolute = /^(?:[a-z]+:)?\//i.test(src);
-  if (window.location.protocol === "file:" && !isAbsolute && src.startsWith("videos/")) {
-    return `dist/${src}`;
-  }
-
-  return src;
-}
-
 export function BackgroundMedia({ imageSrc, videoSrc, isActive }: BackgroundMediaProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const resolvedVideoSrc = useMemo(() => resolveVideoSrc(videoSrc), [videoSrc]);
+  const resolvedImageSrc = useMemo(() => resolveAssetPath(imageSrc), [imageSrc]);
+  const resolvedVideoSrc = useMemo(() => (videoSrc ? resolveAssetPath(videoSrc) : undefined), [videoSrc]);
   const [videoReady, setVideoReady] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
 
@@ -118,7 +107,7 @@ export function BackgroundMedia({ imageSrc, videoSrc, isActive }: BackgroundMedi
     <div className="background-media" aria-hidden="true">
       <img
         className="background-image"
-        src={imageSrc}
+        src={resolvedImageSrc}
         alt=""
         decoding="async"
         draggable={false}
@@ -134,7 +123,7 @@ export function BackgroundMedia({ imageSrc, videoSrc, isActive }: BackgroundMedi
           loop
           playsInline
           preload="metadata"
-          poster={imageSrc}
+          poster={resolvedImageSrc}
           draggable={false}
           onCanPlay={handleCanPlay}
           onLoadedMetadata={handleLoadedMetadata}
