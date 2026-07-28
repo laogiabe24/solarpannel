@@ -78,7 +78,7 @@ export const leadSpecs: Record<number, LeadSpec> = {
   24: { x: 70, y: 167.5, width: 540, fontSize: 20.24, lineHeight: 1.31, showRule: true },
 };
 
-export const memberNameY = [184.4, 231.4, 278.4, 325.4, 372.4, 419.4];
+export const memberNameY = [160, 212, 264, 316, 368, 420];
 
 export const statValueY = [165.3, 237.3];
 

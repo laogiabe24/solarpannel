@@ -222,12 +222,13 @@ export function Slide({ slide, active, shouldAnimate, onAnimated }: SlideProps) 
               className="member-item"
               data-animate="bullet"
               key={member.name}
-              style={{ left: 52, top: memberNameY[index], width: 620, height: 31 }}
+              style={{ left: 52, top: memberNameY[index], width: 620, height: 48 }}
             >
               {hasNumber ? <span className="member-number">{member.number}</span> : null}
               <span className={`member-name ${hasNumber ? "" : "member-name--plain"}`}>
                 {member.name}
               </span>
+              {member.role ? <span className="member-role">{member.role}</span> : null}
             </li>
           );
         })}

@@ -16,6 +16,7 @@ export interface StatItem {
 export interface MemberItem {
   number?: string;
   name: string;
+  role?: string;
 }
 
 export interface BulletItem {
